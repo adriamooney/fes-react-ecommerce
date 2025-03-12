@@ -12,6 +12,7 @@ import Price from './Price';
     const mountedRef = useRef(true);
 
     useEffect(() => {
+        mountedRef.current = true;
         const image = new Image();
         image.src = book.url;
         image.onload = () => {
@@ -22,10 +23,10 @@ import Price from './Price';
             }
           }, 300);
         };
-        // return () => {
-        //   // When the component unmounts  
-        //   mountedRef.current = false;
-        // };
+        return () => {
+          // When the component unmounts  
+          mountedRef.current = false;
+        };
       }, [book.url]);
 
     return (
